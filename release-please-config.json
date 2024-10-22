@@ -1,0 +1,18 @@
+{
+    "include-component-in-tag": false,
+    "plugins": ["sentence-case"],
+    "packages": {
+      ".": {
+        "release-type": "simple",
+        "package-name": "antora-site-action",
+        "extra-files": [
+          {
+            "type": "yaml",
+            "path": "acceptance_test/portal/antora.yml",
+            "jsonpath": "$.version"
+          }
+        ]
+      }
+    },
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+  }
