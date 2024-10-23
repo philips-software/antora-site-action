@@ -1,0 +1,5 @@
+name: integration_test_portal
+title: antora-site-action Integration Test
+version: 1.0.0 # x-release-please-version
+nav:
+  - modules/ROOT/nav.adoc

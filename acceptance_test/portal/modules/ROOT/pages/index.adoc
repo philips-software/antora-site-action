@@ -1,0 +1,3 @@
+= antora-site-action Integration Test
+
+This documentation is part of the integration test of the Antora site action
