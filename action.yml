@@ -28,7 +28,7 @@ runs:
   using: 'composite'
   steps:
     - name: Set up Docker Compose
-      uses: docker/setup-compose-action@v2
+      uses: docker/setup-compose-action@v1
       
     - name: Generate Antora site with PlantUML and Kroki
       shell: bash
