@@ -1,5 +1,5 @@
 name: "Antora Site"
-description: "Generate the Antora site"
+description: "Generate the Antora site with PlantUML and Kroki diagram support"
 branding:
   icon: book-open
   color: yellow
@@ -11,6 +11,7 @@ inputs:
   site_sources_path:
     description: 'The path relative to workspace root, where the asciidoc sources exits'
     required: false
+    default: '.'
   antora_generator:
     description: 'Select generator to be used, currently supports the default "@antora/site-generator-default" or a custom generator path'
     required: false
@@ -24,11 +25,26 @@ inputs:
     required: false
     default: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.antora_playbook}}
-    - ${{ inputs.site_sources_path }}
-    - ${{ inputs.antora_generator }}
-    - ${{ inputs.antora_custom_generator_dependencies }}
-    - ${{ inputs.antora_additional_arguments }}
+  using: 'composite'
+  steps:
+    - name: Set up Docker Compose
+      uses: docker/setup-compose-action@v2
+      
+    - name: Generate Antora site with PlantUML and Kroki
+      shell: bash
+      run: |
+        cd ${{ github.action_path }}
+        
+        # Start diagram servers (PlantUML, Kroki, Mermaid)
+        docker compose up -d plantuml mermaid kroki
+        
+        docker compose run --rm \
+          -e INPUT_SITE_SOURCES_PATH="${{ inputs.site_sources_path }}" \
+          -e INPUT_ANTORA_PLAYBOOK="${{ inputs.antora_playbook }}" \
+          -e INPUT_ANTORA_GENERATOR="${{ inputs.antora_generator }}" \
+          -e INPUT_ANTORA_CUSTOM_GENERATOR_DEPENDENCIES="${{ inputs.antora_custom_generator_dependencies }}" \
+          -e INPUT_ANTORA_ADDITIONAL_ARGUMENTS="${{ inputs.antora_additional_arguments }}" \
+          -e GITHUB_WORKSPACE="${{ github.workspace }}" \
+          -v "${{ github.workspace }}:${{ github.workspace }}" \
+          -w "${{ github.workspace }}" \
+          antora /entrypoint.sh

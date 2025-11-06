@@ -1,3 +1,21 @@
 = antora-site-action Integration Test
 
 This documentation is part of the integration test of the Antora site action
+
+== UML
+[plantuml,alice-bob,svg,role=sequence]
+....
+@startuml
+Bob -> Alice : hello
+@enduml
+....
+
+== Mermaid
+[mermaid,abcd-flowchart,svg]
+....
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+....

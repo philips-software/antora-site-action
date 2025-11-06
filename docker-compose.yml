@@ -1,0 +1,58 @@
+services:
+  plantuml:
+    image: docker.io/plantuml/plantuml-server:jetty@sha256:ac656ab4215fd80554c59330fd365a3b29041e317f232563c7fc807680ec4ef0
+    container_name: plantuml-server
+    ports:
+      - "8000:8080"
+    networks:
+      - antora-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  mermaid:
+    image: yuzutech/kroki-mermaid:0.28.0@sha256:e301872d57b397e1020768cfbafd3ac5d3f2c47a2615d65b9af217c832a226f4
+    container_name: mermaid-server
+    networks:
+      - antora-network
+
+  kroki:
+    image: yuzutech/kroki:0.28.0@sha256:710a5e8d57344769846695431ceefc02aaf908e9958c9d459171d2255ee2f7f5
+    container_name: kroki-server
+    ports:
+      - "8080:8000"
+    networks:
+      - antora-network
+    environment:
+      - KROKI_MERMAID_HOST=mermaid
+    depends_on:
+      - mermaid
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 -O /dev/null http://localhost:8000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  antora:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: antora-generator
+    depends_on:
+      plantuml:
+        condition: service_healthy
+      kroki:
+        condition: service_healthy
+    networks:
+      - antora-network
+    environment:
+      - PLANTUML_SERVER_URL=http://plantuml:8080
+      - KROKI_SERVER_URL=http://kroki:8000
+
+networks:
+  antora-network:
+    driver: bridge
