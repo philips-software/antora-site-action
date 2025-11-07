@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/philips-software/antora-site-action/compare/v1.2.0...v1.3.0) (2025-11-07)
+
+
+### Features
+
+* Builtin plantuml & kroki server for rendering diagrams ([#29](https://github.com/philips-software/antora-site-action/issues/29)) ([e32b558](https://github.com/philips-software/antora-site-action/commit/e32b5589d66157d9b043301bce16d788e1eb9f1e))
+
 ## [1.2.0](https://github.com/philips-software/antora-site-action/compare/v1.1.0...v1.2.0) (2025-10-15)
 
 
