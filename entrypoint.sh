@@ -36,4 +36,7 @@ NODE_PATH="$(npm -g root)" \
 antora \
 --generator $INPUT_ANTORA_GENERATOR \
 --fetch $INPUT_ANTORA_PLAYBOOK \
+--attribute kroki-server-url=$KROKI_SERVER_URL \
+--attribute plantuml-server-url=$PLANTUML_SERVER_URL \
+--attribute kroki-fetch-diagram=true \
 --stacktrace $INPUT_ANTORA_ADDITIONAL_ARGUMENTS
