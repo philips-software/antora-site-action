@@ -9,7 +9,7 @@ GitHub action that can be used to generate the [Antora](https://antora.org/) sit
 
 Supported Antora version: *>= 3.0.0*
 
-Supported rendering plugins: *asciidoctor-plantuml*, *asciidoctor-kroki*
+Supported rendering plugins: *asciidoctor-kroki*
 
 Supported extensions: *@antora/lunr-extension*
 
