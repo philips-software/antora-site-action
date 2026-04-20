@@ -9,7 +9,7 @@ COPY ./entrypoint.sh /entrypoint.sh
 
 # Add permissions to execute entrypoint
 RUN chmod +x /entrypoint.sh
-# install extra antora generators for documentation search and plantuml rendering
-RUN npm i -g asciidoctor-plantuml asciidoctor-kroki @antora/lunr-extension
+# install extra antora extensions for documentation search and diagram rendering
+RUN npm i -g asciidoctor-kroki @antora/lunr-extension
 
 ENTRYPOINT ["/entrypoint.sh"]

@@ -1,5 +1,5 @@
 name: "Antora Site"
-description: "Generate the Antora site with PlantUML and Kroki diagram support"
+description: "Generate the Antora site with Kroki diagram support"
 branding:
   icon: book-open
   color: yellow
@@ -30,13 +30,13 @@ runs:
     - name: Set up Docker Compose
       uses: docker/setup-compose-action@364cc21a5de5b1ee4a7f5f9d3fa374ce0ccde746  # v1.2.0
       
-    - name: Generate Antora site with PlantUML and Kroki
+    - name: Generate Antora site with Kroki
       shell: bash
       run: |
         cd ${{ github.action_path }}
         
-        # Start diagram servers (PlantUML, Kroki, Mermaid)
-        docker compose up -d plantuml mermaid kroki
+        # Start diagram servers (Kroki, Mermaid)
+        docker compose up -d mermaid kroki
         
         docker compose run --rm \
           -e INPUT_SITE_SOURCES_PATH="${{ inputs.site_sources_path }}" \
