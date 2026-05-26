@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) [2024] Koninklijke Philips N.V., https://www.philips.com
 
-FROM docker.io/antora/antora:3.1.14@sha256:8d2c31b2857584b548b57e5c11895b8a5744976b5915eee4740f3810454d4c46
+FROM docker.io/antora/antora:3.1.15@sha256:3e8894c1c1193e0ad27cd87687143b89de88edcb104c653cdce085354a18be5f
 # Docker image for Antora documentation site generator (https://antora.org/)
 # https://gitlab.com/antora/docker-antora
 
