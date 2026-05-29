@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/philips-software/antora-site-action/compare/v1.3.0...v1.4.0) (2026-05-29)
+
+
+### Features
+
+* **deps:** Bump antora/antora from 3.1.14 to 3.1.15 ([#50](https://github.com/philips-software/antora-site-action/issues/50)) ([5b21d4e](https://github.com/philips-software/antora-site-action/commit/5b21d4ed891a0811089f4d2af86ee2af183842a4))
+
 ## [1.3.0](https://github.com/philips-software/antora-site-action/compare/v1.2.0...v1.3.0) (2025-11-07)
 
 
