@@ -22,7 +22,7 @@ RUN apk --no-cache add curl findutils jq \
     && rm -rf $(yarn global dir)/node_modules/pako/dist \
     && find $(yarn global dir)/node_modules/pino -mindepth 1 -maxdepth 1 -not -name pino.js -not -name file.js -not -name package.json -not -name lib -exec rm -rf {} \; \
     && rm -rf $(yarn global dir)/node_modules/source-map/dist \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* \
     && yarn global add --ignore-optional --silent asciidoctor-kroki @antora/lunr-extension
 
 WORKDIR /antora
