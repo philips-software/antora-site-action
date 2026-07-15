@@ -9,7 +9,7 @@ RUN apk --no-cache add curl findutils jq make git yq \
     && yarn global add --ignore-optional --silent \
        @antora/cli@3.1.14 \
        @antora/site-generator-default@3.1.14 \
-       asciidoctor-kroki \
+       asciidoctor-kroki@latest-0 \
        mkdirp \
        unxhr \
        antora-site-generator-lunr \
