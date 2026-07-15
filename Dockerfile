@@ -1,15 +1,24 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) [2024] Koninklijke Philips N.V., https://www.philips.com
 
-FROM docker.io/antora/antora:3.1.15@sha256:3e8894c1c1193e0ad27cd87687143b89de88edcb104c653cdce085354a18be5f
-# Docker image for Antora documentation site generator (https://antora.org/)
-# https://gitlab.com/antora/docker-antora
+FROM node:24-alpine
 
-COPY ./entrypoint.sh /entrypoint.sh
+ENV NODE_PATH=/usr/local/share/.config/yarn/global/node_modules
 
-# Add permissions to execute entrypoint
-RUN chmod +x /entrypoint.sh
-# install extra antora extensions for documentation search and diagram rendering
-RUN npm i -g asciidoctor-kroki @antora/lunr-extension
+RUN apk --no-cache add curl findutils jq make git yq \
+    && yarn global add --ignore-optional --silent \
+       @antora/cli@3.1.14 \
+       @antora/site-generator-default@3.1.14 \
+       asciidoctor-kroki@latest-0 \
+       mkdirp \
+       unxhr \
+       antora-site-generator-lunr \
+    && rm -rf $(yarn cache dir)/* /tmp/*
 
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /antora
+
+COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["antora"]
