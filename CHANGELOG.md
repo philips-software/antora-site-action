@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/philips-software/antora-site-action/compare/v1.4.0...v1.4.1) (2026-07-15)
+
+
+### Bug Fixes
+
+* Pin asciidoctor-kroki to the latest compatible version ([6b7b6da](https://github.com/philips-software/antora-site-action/commit/6b7b6da4ebd6012bc3607c18cbe22c59cc20e459))
+* Pin asciidoctor-kroki to the latest compatible version ([792ba8f](https://github.com/philips-software/antora-site-action/commit/792ba8f080e7cbee8f04799462e2cf2e29d9c982))
+
 ## [1.4.0](https://github.com/philips-software/antora-site-action/compare/v1.3.0...v1.4.0) (2026-05-29)
 
 
